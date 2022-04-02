@@ -1,11 +1,9 @@
-import 'dart:typed_data';
-
 import 'package:bug_busters_flutter/core/constants/assets.dart';
 import 'package:bug_busters_flutter/core/constants/colors.dart';
 import 'package:bug_busters_flutter/features/profile/presentation/widgets/textfield.dart';
+import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:image_picker_web/image_picker_web.dart';
 
 class DesktopView extends StatefulWidget {
   final TextEditingController name;
@@ -26,8 +24,9 @@ class DesktopView extends StatefulWidget {
 }
 
 class _DesktopViewState extends State<DesktopView> {
-  String dropDownButton = "Default";
-  Uint8List? profilePic;
+  String dropDownCurrency1 = "Default";
+  String dropDownCurrency2 = "Default";
+  FilePickerResult? profilePic;
 
   Map currencyList = <String, Widget>{
     'Default': const Text("Select Currency"),
@@ -83,9 +82,14 @@ class _DesktopViewState extends State<DesktopView> {
                                 children: [
                                   GestureDetector(
                                     onTap: () async {
-                                      profilePic = await ImagePickerWeb
-                                          .getImageAsBytes();
-                                      setState(() {});
+                                      profilePic =
+                                          await FilePicker.platform.pickFiles(
+                                        type: FileType.custom,
+                                        allowedExtensions: ['jpg', 'png'],
+                                      );
+                                      setState(() {
+                                        // print(data);
+                                      });
                                     },
                                     child: ClipOval(
                                       child: SizedBox(
@@ -95,7 +99,8 @@ class _DesktopViewState extends State<DesktopView> {
                                                   AppAssets.kAvatar,
                                                   fit: BoxFit.cover,
                                                 )
-                                              : Image.memory(profilePic!)),
+                                              : Image.memory(profilePic!
+                                                  .files.first.bytes!)),
                                     ),
                                   ),
                                   const SizedBox(height: 20),
@@ -104,8 +109,11 @@ class _DesktopViewState extends State<DesktopView> {
                                     children: [
                                       TextButton.icon(
                                         onPressed: () async {
-                                          profilePic = await ImagePickerWeb
-                                              .getImageAsBytes();
+                                          profilePic = await FilePicker.platform
+                                              .pickFiles(
+                                            type: FileType.custom,
+                                            allowedExtensions: ['jpg', 'png'],
+                                          );
                                           setState(() {});
                                         },
                                         style: TextButton.styleFrom(
@@ -279,11 +287,11 @@ class _DesktopViewState extends State<DesktopView> {
                                         color: AppColors.kBlack),
                                     decoration: InputDecoration(
                                       counter: const Offstage(),
-                                      fillColor: AppColors.kGrey,
+                                      fillColor: AppColors.kPrimaryLight,
                                       filled: true,
                                       border: InputBorder.none,
                                       suffixIcon: DropdownButton(
-                                        value: dropDownButton,
+                                        value: dropDownCurrency1,
                                         style: const TextStyle(
                                             color: Colors.black),
                                         items: currency.map((String items) {
@@ -295,7 +303,10 @@ class _DesktopViewState extends State<DesktopView> {
                                           );
                                         }).toList(),
                                         onChanged: (value) {
-                                          dropDownButton = value.toString();
+                                          setState(() {
+                                            dropDownCurrency1 =
+                                                value.toString();
+                                          });
                                         },
                                       ),
                                       focusedBorder: OutlineInputBorder(
@@ -317,10 +328,10 @@ class _DesktopViewState extends State<DesktopView> {
                                     decoration: InputDecoration(
                                       counter: const Offstage(),
                                       border: InputBorder.none,
-                                      fillColor: AppColors.kWhite,
+                                      fillColor: AppColors.kPrimaryLight,
                                       filled: true,
                                       suffixIcon: DropdownButton(
-                                        value: dropDownButton,
+                                        value: dropDownCurrency2,
                                         style: const TextStyle(
                                             color: Colors.black),
                                         items: currency.map((String items) {
@@ -332,7 +343,10 @@ class _DesktopViewState extends State<DesktopView> {
                                           );
                                         }).toList(),
                                         onChanged: (value) {
-                                          dropDownButton = value.toString();
+                                          setState(() {
+                                            dropDownCurrency2 =
+                                                value.toString();
+                                          });
                                         },
                                       ),
                                       focusedBorder: OutlineInputBorder(
