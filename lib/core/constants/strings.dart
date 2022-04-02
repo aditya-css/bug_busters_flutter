@@ -1,3 +1,4 @@
 class AppStrings {
-  static const kMyProfile = "My Profile";
+  static const kMyProfile = "User Profile";
+  static const kTitle = "MetaStack";
 }
