@@ -1,7 +1,18 @@
 import 'package:flutter/material.dart';
+import 'package:sizer/sizer.dart';
+
+import 'features/question_detail/presentation/pages/question_page.dart';
 
 void main() {
-  runApp(const MyApp());
+  runApp(
+    Sizer(
+      builder: (context, orientation, deviceType) {
+        return const MaterialApp(
+          home: QuestionPage(),
+        );
+      },
+    ),
+  );
 }
 
 class MyApp extends StatelessWidget {
