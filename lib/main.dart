@@ -1,9 +1,11 @@
 import 'package:bug_busters_flutter/features/homepage/mobx/all_question_store.dart';
+import 'package:bug_busters_flutter/features/homepage/mobx/login_check_store.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:sizer/sizer.dart';
 
 import 'features/homepage/mobx/left_side_menu_store.dart';
+import 'features/homepage/mobx/login_check_store.dart';
 import 'features/homepage/pages/home_page.dart';
 
 void main() {
@@ -24,11 +26,14 @@ class MyApp extends StatelessWidget {
             Provider<LeftSideMenuStore>(
               create: (context) => LeftSideMenuStore(),
             ),
+            Provider<LoginCheckStore>(
+              create: (context) => LoginCheckStore(),
+            ),
             Provider<AllQuestionStore>(
               create: (context) => AllQuestionStore()..loadAllQuestion(),
             )
           ],
-          child: HomePage(),
+          child: const HomePage(),
         );
       },
     );

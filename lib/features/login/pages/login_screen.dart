@@ -1,9 +1,16 @@
+import 'dart:convert';
+import 'dart:io';
+
 import 'package:bug_busters_flutter/core/constants/resources.dart';
+import 'package:bug_busters_flutter/features/homepage/mobx/login_check_store.dart';
 import 'package:bug_busters_flutter/features/login/mobx/login_store.dart';
 import 'package:file_picker/file_picker.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
+
+import '../../../models/login_request_model.dart';
+import '../../../models/user_model.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({Key? key}) : super(key: key);
@@ -19,21 +26,32 @@ class _LoginScreenState extends State<LoginScreen>
 
   late String? _username, _email, _pass;
 
-/*
-  bool _showPassword = false;
-  FilePickerResult? _profilePic;
+  final LoginStore store = LoginStore(LoginCheckStore());
 
-  IconData get _passIcon =>
-      _showPassword ? Icons.visibility_off_outlined : Icons.visibility_outlined;
-
-  String get _passTooltip => _showPassword ? 'Hide' : 'Show';
-
-  void _togglePassword() {
-    setState(() => _showPassword = !_showPassword);
+  Future<void> _submitForm(GlobalKey<FormState> key) async {
+    if (key.currentState!.validate()) {
+      key.currentState!.save();
+      store.isLoginState
+          ? store.userLogin(
+              LoginRequest(
+                email: _email!,
+                pass: _pass!,
+              ),
+            )
+          : store.userRegister(
+              UserModel(
+                name: _username!,
+                email: _email!,
+                password: _pass!,
+                avatar: base64Encode(
+                  (store.profilePic == null)
+                      ? File(AppAssets.kAvatar).readAsBytesSync()
+                      : store.profilePic!.files.first.bytes!.toList(),
+                ),
+              ),
+            );
+    }
   }
-*/
-
-  final LoginStore store = LoginStore();
 
   @override
   Widget build(BuildContext context) {
@@ -41,205 +59,211 @@ class _LoginScreenState extends State<LoginScreen>
       body: Row(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Observer(builder: (context) {
-            return Expanded(
-              child: SingleChildScrollView(
-                child: Padding(
-                  padding: const EdgeInsets.all(32.0),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Row(
-                        children: [
-                          const Text(
-                            AppStrings.kAccountString,
-                            style: TextStyle(color: Colors.grey),
-                          ),
-                          TextButton(
-                            onPressed: () => store.toggleScreenState(),
-                            child: Text(
-                              (store.isLoginState)
-                                  ? AppStrings.kSignUp
-                                  : AppStrings.kSignIn,
-                              style: const TextStyle(
-                                color: AppColors.kPrimary,
-                                fontWeight: FontWeight.bold,
+          Observer(
+            builder: (context) {
+              return Expanded(
+                child: SingleChildScrollView(
+                  child: Padding(
+                    padding: const EdgeInsets.all(32.0),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Row(
+                          children: [
+                            const Text(
+                              AppStrings.kAccountString,
+                              style: TextStyle(color: Colors.grey),
+                            ),
+                            TextButton(
+                              onPressed: () => store.toggleScreenState(),
+                              child: Text(
+                                (store.isLoginState)
+                                    ? AppStrings.kSignUp
+                                    : AppStrings.kSignIn,
+                                style: const TextStyle(
+                                  color: AppColors.kPrimary,
+                                  fontWeight: FontWeight.bold,
+                                ),
                               ),
                             ),
+                          ],
+                        ),
+                        const SizedBox(height: 48),
+                        const Text(
+                          AppStrings.kWelcomeString,
+                          maxLines: 2,
+                          overflow: TextOverflow.ellipsis,
+                          style: TextStyle(
+                            fontWeight: FontWeight.bold,
+                            fontSize: 38,
                           ),
-                        ],
-                      ),
-                      const SizedBox(height: 48),
-                      const Text(
-                        AppStrings.kWelcomeString,
-                        maxLines: 2,
-                        overflow: TextOverflow.ellipsis,
-                        style: TextStyle(
-                          fontWeight: FontWeight.bold,
-                          fontSize: 38,
                         ),
-                      ),
-                      const SizedBox(height: 8),
-                      Text(
-                        AppStrings.kAppDescription,
-                        maxLines: 3,
-                        overflow: TextOverflow.ellipsis,
-                        style: TextStyle(
-                          color: Colors.grey.shade400,
-                          height: 1.6,
+                        const SizedBox(height: 8),
+                        Text(
+                          AppStrings.kAppDescription,
+                          maxLines: 3,
+                          overflow: TextOverflow.ellipsis,
+                          style: TextStyle(
+                            color: Colors.grey.shade400,
+                            height: 1.6,
+                          ),
                         ),
-                      ),
-                      const SizedBox(height: 24),
-                      Column(
-                        children: [
-                          if (!store.isLoginState)
-                            GestureDetector(
-                              onTap: () async {
-                                store.profilePic =
-                                    await FilePicker.platform.pickFiles(
-                                  type: FileType.custom,
-                                  allowedExtensions: ['jpg', 'png'],
-                                );
-                              },
-                              child: Stack(
+                        const SizedBox(height: 24),
+                        Column(
+                          children: [
+                            if (!store.isLoginState)
+                              GestureDetector(
+                                onTap: () async {
+                                  store.profilePic =
+                                      await FilePicker.platform.pickFiles(
+                                    type: FileType.custom,
+                                    allowedExtensions: ['jpg', 'png'],
+                                  );
+                                },
+                                child: Stack(
+                                  children: [
+                                    ClipOval(
+                                      child: SizedBox(
+                                        height: 160,
+                                        width: 160,
+                                        child: store.profilePic == null
+                                            ? Image.asset(
+                                                AppAssets.kAvatar,
+                                                fit: BoxFit.cover,
+                                              )
+                                            : Image.memory(
+                                                store.profilePic!.files.first
+                                                    .bytes!,
+                                              ),
+                                      ),
+                                    ),
+                                    Positioned(
+                                      bottom: 16,
+                                      right: 8,
+                                      child: Container(
+                                        padding: const EdgeInsets.all(8),
+                                        decoration: const BoxDecoration(
+                                          color: Colors.tealAccent,
+                                          shape: BoxShape.circle,
+                                        ),
+                                        child: const Icon(
+                                          Icons.edit,
+                                          color: AppColors.kPrimary,
+                                        ),
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              ),
+                            Form(
+                              key: _formKey,
+                              child: Column(
                                 children: [
-                                  ClipOval(
-                                    child: SizedBox(
-                                      height: 160,
-                                      width: 160,
-                                      child: store.profilePic == null
-                                          ? Image.asset(
-                                              AppAssets.kAvatar,
-                                              fit: BoxFit.cover,
-                                            )
-                                          : Image.memory(
-                                              store.profilePic!.files.first
-                                                  .bytes!,
-                                            ),
-                                    ),
-                                  ),
-                                  Positioned(
-                                    bottom: 16,
-                                    right: 8,
-                                    child: Container(
-                                      padding: const EdgeInsets.all(8),
-                                      decoration: const BoxDecoration(
-                                        color: Colors.tealAccent,
-                                        shape: BoxShape.circle,
-                                      ),
-                                      child: const Icon(
-                                        Icons.edit,
-                                        color: AppColors.kPrimary,
+                                  if (!store.isLoginState)
+                                    TextFormField(
+                                      autovalidateMode:
+                                          AutovalidateMode.onUserInteraction,
+                                      validator: (String? value) =>
+                                          AppUtils.nameValidator(value),
+                                      onSaved: (String? value) =>
+                                          _username = value?.trim(),
+                                      keyboardType: TextInputType.name,
+                                      textInputAction: TextInputAction.next,
+                                      textCapitalization:
+                                          TextCapitalization.words,
+                                      enableSuggestions: true,
+                                      cursorColor: AppColors.kPrimary,
+                                      cursorWidth: 1.5,
+                                      style: AppUtils.kMyFormTextStyle,
+                                      // Uses InputDecorationTheme defined in MaterialApp.
+                                      decoration: const InputDecoration(
+                                        label: Text('Name'),
+                                        suffixIcon: Icon(
+                                          Icons.account_circle_outlined,
+                                          color: Colors.grey,
+                                        ),
                                       ),
                                     ),
-                                  ),
-                                ],
-                              ),
-                            ),
-                          Form(
-                            key: _formKey,
-                            child: Column(
-                              children: [
-                                if (!store.isLoginState)
+                                  const SizedBox(height: 32),
                                   TextFormField(
                                     autovalidateMode:
                                         AutovalidateMode.onUserInteraction,
                                     validator: (String? value) =>
-                                        AppUtils.nameValidator(value),
+                                        AppUtils.emailValidator(value),
                                     onSaved: (String? value) =>
-                                        _username = value?.trim(),
-                                    keyboardType: TextInputType.name,
+                                        _email = value?.trim(),
+                                    keyboardType: TextInputType.emailAddress,
                                     textInputAction: TextInputAction.next,
-                                    textCapitalization:
-                                        TextCapitalization.words,
                                     enableSuggestions: true,
                                     cursorColor: AppColors.kPrimary,
                                     cursorWidth: 1.5,
                                     style: AppUtils.kMyFormTextStyle,
-                                    // Uses InputDecorationTheme defined in MaterialApp.
                                     decoration: const InputDecoration(
-                                      label: Text('Name'),
+                                      label: Text('Email'),
                                       suffixIcon: Icon(
-                                        Icons.account_circle_outlined,
+                                        Icons.alternate_email,
                                         color: Colors.grey,
                                       ),
                                     ),
                                   ),
-                                const SizedBox(height: 32),
-                                TextFormField(
-                                  autovalidateMode:
-                                      AutovalidateMode.onUserInteraction,
-                                  validator: (String? value) =>
-                                      AppUtils.emailValidator(value),
-                                  onSaved: (String? value) =>
-                                      _email = value?.trim(),
-                                  keyboardType: TextInputType.emailAddress,
-                                  textInputAction: TextInputAction.next,
-                                  enableSuggestions: true,
-                                  cursorColor: AppColors.kPrimary,
-                                  cursorWidth: 1.5,
-                                  style: AppUtils.kMyFormTextStyle,
-                                  decoration: const InputDecoration(
-                                    label: Text('Email'),
-                                    suffixIcon: Icon(
-                                      Icons.alternate_email,
-                                      color: Colors.grey,
+                                  const SizedBox(height: 32),
+                                  TextFormField(
+                                    autovalidateMode:
+                                        AutovalidateMode.onUserInteraction,
+                                    validator: (String? value) =>
+                                        AppUtils.passValidator(value),
+                                    onSaved: (String? value) =>
+                                        _pass = value?.trim(),
+                                    onFieldSubmitted: (String? value) =>
+                                        _submitForm(_formKey),
+                                    textInputAction: TextInputAction.done,
+                                    obscureText: !store.showPassword,
+                                    cursorColor: AppColors.kPrimary,
+                                    cursorWidth: 1.5,
+                                    style: AppUtils.kMyFormTextStyle,
+                                    decoration: InputDecoration(
+                                      label: const Text('Password'),
+                                      suffixIcon: IconButton(
+                                        onPressed: () => store.togglePassword(),
+                                        tooltip: store.passTooltip,
+                                        color: Colors.grey,
+                                        icon: Icon(store.passwordIcon),
+                                      ),
                                     ),
                                   ),
-                                ),
-                                const SizedBox(height: 32),
-                                TextFormField(
-                                  autovalidateMode:
-                                      AutovalidateMode.onUserInteraction,
-                                  validator: (String? value) =>
-                                      AppUtils.passValidator(value),
-                                  onSaved: (String? value) =>
-                                      _pass = value?.trim(),
-                                  /*onFieldSubmitted: (String? value) =>
-                                              submitForm(_formKey, context),*/
-                                  textInputAction: TextInputAction.done,
-                                  obscureText: !store.showPassword,
-                                  cursorColor: AppColors.kPrimary,
-                                  cursorWidth: 1.5,
-                                  style: AppUtils.kMyFormTextStyle,
-                                  decoration: InputDecoration(
-                                    label: const Text('Password'),
-                                    suffixIcon: IconButton(
-                                      onPressed: () => store.togglePassword(),
-                                      tooltip: store.passTooltip,
-                                      color: Colors.grey,
-                                      icon: Icon(store.passwordIcon),
-                                    ),
+                                  const SizedBox(height: 32),
+                                  CupertinoButton(
+                                    onPressed: () => _submitForm(_formKey),
+                                    color: AppColors.kPrimary,
+                                    borderRadius: BorderRadius.circular(4),
+                                    child: (store.isLoading)
+                                        ? const CircularProgressIndicator(
+                                            color: Colors.white,
+                                          )
+                                        : Text(
+                                            (store.isLoginState)
+                                                ? AppStrings.kLoginString
+                                                : AppStrings.kSignUpString,
+                                            maxLines: 2,
+                                            overflow: TextOverflow.ellipsis,
+                                            style: const TextStyle(
+                                              color: AppColors.kWhite,
+                                            ),
+                                          ),
                                   ),
-                                ),
-                                const SizedBox(height: 32),
-                                CupertinoButton(
-                                  onPressed: () {},
-                                  color: AppColors.kPrimary,
-                                  borderRadius: BorderRadius.circular(4),
-                                  child: Text(
-                                    (store.isLoginState)
-                                        ? AppStrings.kLoginString
-                                        : AppStrings.kSignUpString,
-                                    maxLines: 2,
-                                    overflow: TextOverflow.ellipsis,
-                                    style: const TextStyle(
-                                      color: AppColors.kWhite,
-                                    ),
-                                  ),
-                                ),
-                              ],
+                                ],
+                              ),
                             ),
-                          ),
-                        ],
-                      ),
-                      // const Spacer(),
-                    ],
+                          ],
+                        ),
+                        // const Spacer(),
+                      ],
+                    ),
                   ),
                 ),
-              ),
-            );
-          }),
+              );
+            },
+          ),
           Expanded(
             child: SizedBox.expand(
               child: ColoredBox(
