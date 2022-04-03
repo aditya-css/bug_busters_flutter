@@ -20,8 +20,8 @@ class UserModel {
     this.publicAddress,
     this.totalRewards = 0,
     required this.avatar,
-    required this.createdAt,
-    required this.updatedAt,
+     this.createdAt,
+     this.updatedAt,
   });
 
   factory UserModel.fromJson(Map<String, dynamic> json) =>
