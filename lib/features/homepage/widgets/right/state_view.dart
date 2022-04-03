@@ -7,8 +7,10 @@ import 'custom_divider.dart';
 import 'custom_text_num.dart';
 
 class StateView extends StatelessWidget {
-  const StateView({Key? key}) : super(key: key);
+   StateView({Key? key}) : super(key: key);
 
+  List<String> label = ["Questions", "Answers", "Rewards"];
+  List<int> state = [10, 20, 6];
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -16,13 +18,14 @@ class StateView extends StatelessWidget {
       child: CustomElevatedContainer(
         child: Column(
           children: [
-            const CustomIconTextWidget(iconPath: AppAssets.kTrendingIcon, text: "State"),
-           const CustomDivider(),
+            const CustomIconTextWidget(
+                iconPath: AppAssets.kTrendingIcon, text: "State"),
+            const CustomDivider(),
             ListView.separated(
               shrinkWrap: true,
-              itemBuilder: (_, index) => const CustomTextNumWidget(
-                text: "Questions",
-                num: 100,
+              itemBuilder: (_, index) =>  CustomTextNumWidget(
+                text: label[index],
+                num: state[index],
               ),
               separatorBuilder: (_, index) => Divider(
                 color: AppColors.kGrey.withOpacity(0.2),

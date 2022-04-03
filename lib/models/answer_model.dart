@@ -5,19 +5,22 @@ part 'answer_model.g.dart';
 
 @JsonSerializable()
 class AnswerModel {
-  @JsonKey(name: "userId")
-  final UserModel user;
+  final String userId;
   @JsonKey(name: "questionId")
   final QuestionModel question;
   final String description;
+  final String createdAt;
+  final String updatedAt;
   final int vote;
   final bool isAccepted;
 
   AnswerModel({
-    required this.user,
+    required this.createdAt,
+    required this.updatedAt,
+    required this.userId,
     required this.question,
     required this.description,
-     this.vote=0,
+    this.vote = 0,
     this.isAccepted = false,
   });
 

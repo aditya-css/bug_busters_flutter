@@ -7,7 +7,8 @@ import 'desktop_view.dart';
 import 'mobile_view.dart';
 
 class QuestionPage extends StatefulWidget {
-  const QuestionPage({Key? key}) : super(key: key);
+  final String qId;
+  const QuestionPage({Key? key, required this.qId}) : super(key: key);
 
   @override
   State<QuestionPage> createState() => _QuestionPageState();
@@ -128,6 +129,12 @@ class _QuestionPageState extends State<QuestionPage> {
             ),
           );
         });
+  }
+
+  @override
+  void initState() {
+    super.initState();
+
   }
 
   @override

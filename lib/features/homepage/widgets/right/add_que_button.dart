@@ -1,3 +1,4 @@
+import 'package:bug_busters_flutter/api_service/repositories/api_repo.dart';
 import 'package:bug_busters_flutter/core/constants/resources.dart';
 import 'package:flutter/material.dart';
 import 'package:sizer/sizer.dart';
@@ -16,7 +17,8 @@ class AddQuesButton extends StatelessWidget {
         barrierDismissible: false,
         builder: (BuildContext context) {
           return AlertDialog(
-            shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(25.0)),
+            shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(25.0)),
             content: SizedBox(
               width: 40.w,
               child: Form(
@@ -81,7 +83,8 @@ class AddQuesButton extends StatelessWidget {
                           style: TextButton.styleFrom(
                             // backgroundColor: AppColors.kCardBG,
                             elevation: 0,
-                            padding: const EdgeInsets.symmetric(horizontal: 28, vertical: 20),
+                            padding: const EdgeInsets.symmetric(
+                                horizontal: 28, vertical: 20),
                             shape: RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(6),
                             ),
@@ -95,11 +98,16 @@ class AddQuesButton extends StatelessWidget {
                           ),
                         ),
                         TextButton(
-                          onPressed: () {},
+                          onPressed: () {
+                            if (_formKey.currentState!.validate()) {
+                              //
+                            }
+                          },
                           style: TextButton.styleFrom(
                             backgroundColor: AppColors.kCardBG,
                             elevation: 0,
-                            padding: const EdgeInsets.symmetric(horizontal: 28, vertical: 20),
+                            padding: const EdgeInsets.symmetric(
+                                horizontal: 28, vertical: 20),
                             shape: RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(6),
                             ),

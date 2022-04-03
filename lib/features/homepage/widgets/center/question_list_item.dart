@@ -1,16 +1,18 @@
 import 'package:bug_busters_flutter/core/constants/assets.dart';
 import 'package:bug_busters_flutter/core/constants/colors.dart';
+import 'package:bug_busters_flutter/models/answer_model.dart';
+import 'package:bug_busters_flutter/models/question_model.dart';
+import 'package:bug_busters_flutter/models/user_model.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:timeago/timeago.dart' as timeago;
 
 import '../../../question_detail/pages/question_page.dart';
 import '../right/custom_divider.dart';
 
 class QuestionListItem extends StatelessWidget {
-  // final String question;
-  // final String description;
-  // final String username;
-  const QuestionListItem({Key? key}) : super(key: key);
+  final QuestionModel queModel;
+  const QuestionListItem({Key? key, required this.queModel}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -30,7 +32,7 @@ class QuestionListItem extends StatelessWidget {
       ),
       child: InkWell(
         onTap: (){
-          Navigator.push(context, MaterialPageRoute(builder: (_)=>const QuestionPage()));
+          Navigator.push(context, MaterialPageRoute(builder: (_)=> QuestionPage(qId: queModel.id,)));
         },
         child: Row(
           children: [
@@ -45,7 +47,7 @@ class QuestionListItem extends StatelessWidget {
                   ),
                 ),
                 const SizedBox(height: 10.0),
-                const Text('30'),
+                 Text(queModel.vote.toString()),
                 const SizedBox(height: 10.0),
                 InkWell(
                   onTap: () {},
@@ -62,12 +64,12 @@ class QuestionListItem extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    "What does the say?",
+                    queModel.question,
                     style: Theme.of(context).textTheme.headline5,
                   ),
                   const SizedBox(height: 20),
                   Text(
-                    "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.",
+                    queModel.description,
                     maxLines: 5,
                     overflow: TextOverflow.ellipsis,
                     style: Theme.of(context).textTheme.bodyText2?.copyWith(
@@ -94,18 +96,17 @@ class QuestionListItem extends StatelessWidget {
                         ),
                       const SizedBox(width: 10),
                       Text(
-                        "Happy Makadiya",
+                        queModel.user.name,
                         style: Theme.of(context).textTheme.bodySmall?.copyWith(
                           color: AppColors.kPrimary.withOpacity(0.8),
                         ),
                       ),
                       const SizedBox(width: 30),
-
                       if(size.width > 900)
                         ...[
                           const Spacer(),
                           Text(
-                            "12 hr ago",
+                            timeago.format(DateTime.parse(queModel.createdAt)),
                             style: Theme.of(context).textTheme.bodySmall?.copyWith(),
                           ),
                           const SizedBox(width: 20),
@@ -117,7 +118,7 @@ class QuestionListItem extends StatelessWidget {
                           ),
                           const SizedBox(width: 10),
                           Text(
-                            "50+",
+                            queModel.vote.toString(),
                             style: Theme.of(context).textTheme.bodySmall?.copyWith(),
                           ),
                         ]

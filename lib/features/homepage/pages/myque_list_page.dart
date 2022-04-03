@@ -8,14 +8,14 @@ class MyQueListPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Center(
-      child: ListView.builder(
-        itemCount: 1,
-        controller: ScrollController(),
-        physics: const BouncingScrollPhysics(),
-        itemBuilder: (context, index) {
-          return const QuestionListItem();
-        },
-      ),
+      // child: ListView.builder(
+      //   itemCount: 1,
+      //   controller: ScrollController(),
+      //   physics: const BouncingScrollPhysics(),
+      //   itemBuilder: (context, index) {
+      //     return const QuestionListItem();
+      //   },
+      // ),
     );
   }
 }

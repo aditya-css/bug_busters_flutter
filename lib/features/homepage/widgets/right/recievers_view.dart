@@ -7,8 +7,9 @@ import 'custom_icon_text.dart';
 import 'custom_text_num.dart';
 
 class ReceiversView extends StatelessWidget {
-  const ReceiversView({Key? key}) : super(key: key);
-
+  ReceiversView({Key? key}) : super(key: key);
+  List<String> label = ["vivek", "Aditya", "Happy"];
+  List<int> state = [3, 2, 1];
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -23,9 +24,9 @@ class ReceiversView extends StatelessWidget {
             const CustomDivider(),
             ListView.separated(
               shrinkWrap: true,
-              itemBuilder: (_, index) => const CustomTextNumWidget(
-                text: "Happy Makadiya",
-                num: 100,
+              itemBuilder: (_, index) =>  CustomTextNumWidget(
+                text: label[index],
+                num: state[index],
               ),
               separatorBuilder: (_, index) => const CustomDivider(),
               itemCount: 3,

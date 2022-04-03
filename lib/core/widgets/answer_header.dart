@@ -20,6 +20,7 @@ class AnswerHeader extends StatelessWidget {
       children: [
         Row(
           crossAxisAlignment: CrossAxisAlignment.center,
+          mainAxisAlignment: MainAxisAlignment.start,
           children: [
             CircleAvatar(
               backgroundImage: NetworkImage(

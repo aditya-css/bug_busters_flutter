@@ -1,3 +1,4 @@
+import 'package:bug_busters_flutter/features/homepage/mobx/all_question_store.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:sizer/sizer.dart';
@@ -23,6 +24,9 @@ class MyApp extends StatelessWidget {
             Provider<LeftSideMenuStore>(
               create: (context) => LeftSideMenuStore(),
             ),
+            Provider<AllQuestionStore>(
+              create: (context) => AllQuestionStore()..loadAllQuestion(),
+            )
           ],
           child: HomePage(),
         );

@@ -18,8 +18,8 @@ class RightSideView extends StatelessWidget {
       child: Column(
         children: [
           AddQuesButton(),
-          const StateView(),
-          const ReceiversView(),
+           StateView(),
+           ReceiversView(),
         ],
       ),
     );
