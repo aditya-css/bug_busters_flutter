@@ -1,3 +1,4 @@
+import 'package:bug_busters_flutter/features/profile/mobx/profile_store.dart';
 import 'package:bug_busters_flutter/features/homepage/mobx/all_question_store.dart';
 import 'package:bug_busters_flutter/features/homepage/mobx/login_check_store.dart';
 import 'package:bug_busters_flutter/features/homepage/mobx/all_question_store.dart';
@@ -31,6 +32,9 @@ class MyApp extends StatelessWidget {
           providers: [
             Provider<LeftSideMenuStore>(
               create: (context) => LeftSideMenuStore(),
+            ),
+            Provider<ProfileStore>(
+              create: ((context) => ProfileStore()),
             ),
             Provider<LoginCheckStore>(
               create: (context) => LoginCheckStore(),

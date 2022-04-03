@@ -1,21 +1,31 @@
+import 'dart:convert';
+import 'dart:math';
+
 import 'package:bug_busters_flutter/core/constants/resources.dart';
 import 'package:bug_busters_flutter/core/widgets/custom_elevated_container.dart';
 import 'package:bug_busters_flutter/features/profile/mobx/profile_store.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_web3/flutter_web3.dart';
+import 'package:flutter/services.dart';
+import 'package:flutter_web3/flutter_web3.dart' hide Provider;
 import 'package:provider/provider.dart';
 
 class SwapTokenView extends StatefulWidget {
-  SwapTokenView({Key? key}) : super(key: key);
+  const SwapTokenView({Key? key}) : super(key: key);
 
   @override
   State<SwapTokenView> createState() => _SwapTokenViewState();
 }
 
 class _SwapTokenViewState extends State<SwapTokenView> {
-  final late store;
+  bool get isEnabled => ethereum != null;
+  late final ProfileStore store;
+  late final dynamic jsonResult;
+  late List<String> newData;
 
-  
+  TextEditingController currencyOne = TextEditingController();
+  TextEditingController currencyTwo = TextEditingController();
+
   String dropDownCurrency1 = "Default";
 
   String dropDownCurrency2 = "Default";
@@ -32,9 +42,15 @@ class _SwapTokenViewState extends State<SwapTokenView> {
     'META',
   ];
 
+  Future<void> getMetaStack() async {
+    var jsonString = await rootBundle.loadString(AppAssets.kMetaStack);
+    jsonResult = await jsonDecode(jsonString);
+  }
+
   @override
   void didChangeDependencies() {
     super.didChangeDependencies();
+    getMetaStack();
     store = Provider.of<ProfileStore>(context);
   }
 
@@ -64,6 +80,7 @@ class _SwapTokenViewState extends State<SwapTokenView> {
                   const SizedBox(height: 20),
                   TextField(
                     maxLength: 15,
+                    controller: currencyOne,
                     keyboardType: TextInputType.number,
                     style: const TextStyle(color: AppColors.kBlack),
                     decoration: InputDecoration(
@@ -103,6 +120,7 @@ class _SwapTokenViewState extends State<SwapTokenView> {
                   ),
                   const SizedBox(height: 20),
                   TextField(
+                    controller: currencyTwo,
                     maxLength: 15,
                     keyboardType: TextInputType.number,
                     style: const TextStyle(color: Colors.black),
@@ -144,7 +162,36 @@ class _SwapTokenViewState extends State<SwapTokenView> {
                   ),
                   const SizedBox(height: 20),
                   TextButton.icon(
-                    onPressed: () {},
+                    onPressed: () async {
+                      if (ethereum != null) {
+                        try {
+                          final metaToken = Contract(
+                            '0x9Bf51d67178Ca86487d360f20f69a9DBaB98E889',
+                            Interface(await rootBundle
+                                .loadString(AppAssets.kMetaToken)),
+                            provider!.getSigner(),
+                          );
+                          if (dropDownCurrency2 == "ETH") {
+                            metaToken.send(
+                                'ethToToken',
+                                [],
+                                TransactionOverride(
+                                    value: BigInt.from(
+                                        (double.parse(currencyTwo.text)) *
+                                            pow(10, 17))));
+                          } else if (dropDownCurrency2 == "META") {
+                            metaToken.send(
+                              'tokenToEth',
+                              [(double.parse(currencyTwo.text) * pow(10, 17))],
+                            );
+                          }
+                        } on EthereumUserRejected {
+                          print('User rejected the modal');
+                        }
+                      } else {
+                        print("Ethereum not aviavlable");
+                      }
+                    },
                     style: TextButton.styleFrom(
                       fixedSize: const Size(200, 50),
                       backgroundColor: AppColors.kPrimary,
@@ -173,15 +220,13 @@ class _SwapTokenViewState extends State<SwapTokenView> {
         ),
         TextButton.icon(
           onPressed: () async {
-            // `Ethereum.isSupported` is the same as `ethereum != null`
             if (ethereum != null) {
               try {
-                // Prompt user to connect to the provider, i.e. confirm the connection modal
-                final accs = await ethereum!
-                    .requestAccount(); // Get all accounts in node disposal
-                accs; // [foo,bar]
+                store.access = await ethereum!.requestAccount();
               } on EthereumUserRejected {
-                print('User rejected the modal');
+                if (kDebugMode) {
+                  print('User rejected the modal');
+                }
               }
             }
           },
