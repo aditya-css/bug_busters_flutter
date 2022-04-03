@@ -1,8 +1,8 @@
 import 'package:bug_busters_flutter/core/constants/colors.dart';
 import 'package:bug_busters_flutter/core/constants/resources.dart';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
+import 'package:network_logger/network_logger.dart';
 import 'package:provider/provider.dart';
 
 import '../../profile/pages/swap_token_view.dart';
@@ -12,8 +12,19 @@ import '../widgets/right/right_side_view.dart';
 import '../widgets/top/appbar.dart';
 import 'body_container_page.dart';
 
-class HomePage extends StatelessWidget {
-  HomePage({Key? key}) : super(key: key);
+class HomePage extends StatefulWidget {
+  const HomePage({Key? key}) : super(key: key);
+
+  @override
+  State<HomePage> createState() => _HomePageState();
+}
+
+class _HomePageState extends State<HomePage> {
+  @override
+  void initState() {
+    NetworkLoggerOverlay.attachTo(context);
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {

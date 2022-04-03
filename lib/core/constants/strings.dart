@@ -19,4 +19,6 @@ class AppStrings {
   static const String kAccountString = 'Have an account?';
   static const String kSignIn = ' Sign In';
   static const String kSignUp = ' Sign Up';
+
+  static const String kUserTokenName = 'userToken';
 }
