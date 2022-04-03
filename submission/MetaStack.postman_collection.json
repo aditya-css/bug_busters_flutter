@@ -1,0 +1,568 @@
+{
+	"info": {
+		"_postman_id": "338dc2ad-fd66-4872-9ed1-09681aca891d",
+		"name": "MetaStack",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Total Question",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"vote\":556\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:4000/question/totalQuestion",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "4000",
+					"path": [
+						"question",
+						"totalQuestion"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Top Question",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"vote\":556\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:4000/question/topQuestions",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "4000",
+					"path": [
+						"question",
+						"topQuestions"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Search Question",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"tag\":[\"error\"]\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:4000/question/searchQuestion",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "4000",
+					"path": [
+						"question",
+						"searchQuestion"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "view questions",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"tag\":[\"error\"]\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:4000/question/viewQuestions",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "4000",
+					"path": [
+						"question",
+						"viewQuestions"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "ansQuestions",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"tag\":[\"type\"]\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:4000/question/ansOfQuestion/6248399237874035927b0867",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "4000",
+					"path": [
+						"question",
+						"ansOfQuestion",
+						"6248399237874035927b0867"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Total Question Copy",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"name\":\"vivek\",\n    \"email\":\"vivekchavda@gmail.com\",\n    \"password\":\"Vivek@3241\",\n    \"publicAddress\":\"\",\n    \"totalRewards\":0,\n    \"avatar\":\"6432767264724\"\n}"
+				},
+				"url": {
+					"raw": "http://localhost:4000/user/register",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "4000",
+					"path": [
+						"user",
+						"register"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "login",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \n    \"email\":\"vivekchavda@gmail.com\",\n    \"password\":\"Vivek@3241\",\n    \n}"
+				},
+				"url": {
+					"raw": "http://localhost:4000/user/login",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "4000",
+					"path": [
+						"user",
+						"login"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Add User",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"name\":\"hjhghsd\", \n    \"email\":\"vivek2@gmail.com\", \n    \"password\":\"vivek@123\", \n    \"publicAddress\":\"ngJHXhcsh\",\n    \"avatar\":\"hsjjdsjjssdf\", \n    \"totalRewards\":12\n}\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:4000/user/register",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "4000",
+					"path": [
+						"user",
+						"register"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "add ques",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\n    \"user_Id\":\"6247f7dc50ce555e2e3917bf\",\n\n    \"question\":\"This IS question about not calling HTTP Request In Fluter Code Fest 2022?\",\n\n    \"description\":\"bgfhdhjfvhjd\",\n\n    \"tags\":[\"codefest\",\"nodejs\",\"2022\"],\n\n    \"vote\":12\n\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:4000/question/addQuestion",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "4000",
+					"path": [
+						"question",
+						"addQuestion"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "all Ques",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": ""
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Total Answer",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:4000/answer/totalAnswer",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "4000",
+					"path": [
+						"answer",
+						"totalAnswer"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Top Question",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:4000/answer/totalAnswer",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "4000",
+					"path": [
+						"answer",
+						"totalAnswer"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "updateVote",
+			"request": {
+				"method": "PATCH",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"vote\":5666\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:4000/question/vote/624844081439c372041cc786",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "4000",
+					"path": [
+						"question",
+						"vote",
+						"624844081439c372041cc786"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "updateVote Copy",
+			"request": {
+				"method": "PATCH",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"vote\":5666\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:4000/question/vote/624844081439c372041cc786",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "4000",
+					"path": [
+						"question",
+						"vote",
+						"624844081439c372041cc786"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Search Question",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"tag\": [\n        \"nodejs\",\n        \"backend\",\n        \"javascript\"\n\n    ]\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:4000/question/searchQuestion",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "4000",
+					"path": [
+						"question",
+						"searchQuestion"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Search Question Copy 2",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"tag\": [\n        \"nodejs\",\n        \"backend\",\n        \"javascript\"\n\n    ]\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:4000/question/searchQuestion",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "4000",
+					"path": [
+						"question",
+						"searchQuestion"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Search Question Copy",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"tag\": [\n        \"nodejs\",\n        \"backend\",\n        \"javascript\"\n\n    ]\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:4000/question/searchQuestion",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "4000",
+					"path": [
+						"question",
+						"searchQuestion"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Search Question Copy 3",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"tag\": [\n        \"nodejs\",\n        \"backend\",\n        \"javascript\"\n\n    ]\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:4000/question/searchQuestion",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "4000",
+					"path": [
+						"question",
+						"searchQuestion"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "update totalRewards",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"totalRewards\": 5\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://metastack.herokuapp.com/user/updateTotalRewards/62495fb3fe08e6f5d31f428c",
+					"protocol": "https",
+					"host": [
+						"metastack",
+						"herokuapp",
+						"com"
+					],
+					"path": [
+						"user",
+						"updateTotalRewards",
+						"62495fb3fe08e6f5d31f428c"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "update public address",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"url": {
+					"raw": "https://metastack.herokuapp.com/user/updatePublicAddress/62495fb3fe08e6f5d31f428c",
+					"protocol": "https",
+					"host": [
+						"metastack",
+						"herokuapp",
+						"com"
+					],
+					"path": [
+						"user",
+						"updatePublicAddress",
+						"62495fb3fe08e6f5d31f428c"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
