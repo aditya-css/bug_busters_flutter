@@ -16,10 +16,10 @@ class RightSideView extends StatelessWidget {
           ? const EdgeInsets.only(top: 50.0, left: 20, right: 20)
           : const EdgeInsets.only(top: 50.0, right: 20),
       child: Column(
-        children: const [
+        children: [
           AddQuesButton(),
-          StateView(),
-          ReceiversView(),
+          const StateView(),
+          const ReceiversView(),
         ],
       ),
     );

@@ -22,6 +22,7 @@ class _QuestionPageState extends State<QuestionPage> {
   void showAlert() {
     showDialog(
         context: context,
+        barrierDismissible: false,
         builder: (BuildContext context) {
           return AlertDialog(
             shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(50.0)),
@@ -77,23 +78,48 @@ class _QuestionPageState extends State<QuestionPage> {
                           ),
                         ),
                       ),
-                      TextButton(
-                        onPressed: () {},
-                        style: TextButton.styleFrom(
-                          backgroundColor: AppColors.kCardBG,
-                          elevation: 0,
-                          padding: const EdgeInsets.symmetric(horizontal: 28, vertical: 20),
-                          shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(6),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceAround,
+                        children: [
+                          TextButton(
+                            onPressed: () {
+                              Navigator.pop(context);
+                            },
+                            style: TextButton.styleFrom(
+                              // backgroundColor: AppColors.kCardBG,
+                              elevation: 0,
+                              padding: const EdgeInsets.symmetric(horizontal: 28, vertical: 20),
+                              shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(6),
+                              ),
+                            ),
+                            child: const Text(
+                              'Cancel',
+                              style: TextStyle(
+                                color: AppColors.kCardBG,
+                                fontWeight: FontWeight.bold,
+                              ),
+                            ),
                           ),
-                        ),
-                        child: const Text(
-                          'Submit',
-                          style: TextStyle(
-                            color: AppColors.kWhite,
-                            fontWeight: FontWeight.bold,
+                          TextButton(
+                            onPressed: () {},
+                            style: TextButton.styleFrom(
+                              backgroundColor: AppColors.kCardBG,
+                              elevation: 0,
+                              padding: const EdgeInsets.symmetric(horizontal: 28, vertical: 20),
+                              shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(6),
+                              ),
+                            ),
+                            child: const Text(
+                              'Submit',
+                              style: TextStyle(
+                                color: AppColors.kWhite,
+                                fontWeight: FontWeight.bold,
+                              ),
+                            ),
                           ),
-                        ),
+                        ],
                       ),
                     ],
                   ),
