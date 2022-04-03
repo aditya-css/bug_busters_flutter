@@ -44,6 +44,7 @@ dependencies:
   retrofit: ^3.0.1
   json_annotation: ^4.4.0
   dio: ^4.0.4
+  flutter_web3: ^2.1.9
 
 
 dev_dependencies:
