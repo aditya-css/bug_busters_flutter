@@ -1,9 +1,10 @@
 import 'package:bug_busters_flutter/core/constants/assets.dart';
 import 'package:bug_busters_flutter/core/constants/colors.dart';
-import 'package:bug_busters_flutter/features/profile/presentation/widgets/textfield.dart';
 import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+
+import '../widgets/textfield.dart';
 
 class DesktopView extends StatefulWidget {
   final TextEditingController name;

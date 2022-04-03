@@ -1,8 +1,9 @@
-import 'package:bug_busters_flutter/features/homepage/presentation/widgets/right/add_que_button.dart';
-import 'package:bug_busters_flutter/features/homepage/presentation/widgets/right/recievers_view.dart';
-import 'package:bug_busters_flutter/features/homepage/presentation/widgets/right/state_view.dart';
+import 'package:bug_busters_flutter/features/homepage/widgets/right/recievers_view.dart';
+import 'package:bug_busters_flutter/features/homepage/widgets/right/state_view.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+
+import 'add_que_button.dart';
 
 class RightSideView extends StatelessWidget {
   const RightSideView({Key? key}) : super(key: key);

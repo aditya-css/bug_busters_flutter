@@ -1,9 +1,10 @@
 import 'package:bug_busters_flutter/core/constants/resources.dart';
 import 'package:bug_busters_flutter/core/widgets/custom_elevated_container.dart';
-import 'package:bug_busters_flutter/features/homepage/presentation/widgets/right/custom_divider.dart';
-import 'package:bug_busters_flutter/features/homepage/presentation/widgets/right/custom_icon_text.dart';
-import 'package:bug_busters_flutter/features/homepage/presentation/widgets/right/custom_text_num.dart';
 import 'package:flutter/material.dart';
+
+import 'custom_divider.dart';
+import 'custom_icon_text.dart';
+import 'custom_text_num.dart';
 
 class ReceiversView extends StatelessWidget {
   const ReceiversView({Key? key}) : super(key: key);

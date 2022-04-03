@@ -1,14 +1,16 @@
 import 'package:bug_busters_flutter/core/constants/colors.dart';
 import 'package:bug_busters_flutter/core/constants/resources.dart';
-import 'package:bug_busters_flutter/features/homepage/presentation/mobx/left_side_menu_store.dart';
-import 'package:bug_busters_flutter/features/homepage/presentation/pages/body_container_page.dart';
-import 'package:bug_busters_flutter/features/profile/presentation/pages/swap_token_view.dart';
-import 'package:bug_busters_flutter/features/homepage/presentation/widgets/left/left_side_menu.dart';
-import 'package:bug_busters_flutter/features/homepage/presentation/widgets/right/right_side_view.dart';
-import 'package:bug_busters_flutter/features/homepage/presentation/widgets/top/appbar.dart';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:provider/provider.dart';
+
+import '../../profile/pages/swap_token_view.dart';
+import '../mobx/left_side_menu_store.dart';
+import '../widgets/left/left_side_menu.dart';
+import '../widgets/right/right_side_view.dart';
+import '../widgets/top/appbar.dart';
+import 'body_container_page.dart';
 
 class HomePage extends StatelessWidget {
   HomePage({Key? key}) : super(key: key);

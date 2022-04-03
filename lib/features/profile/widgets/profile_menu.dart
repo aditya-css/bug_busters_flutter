@@ -1,8 +1,9 @@
-import 'package:bug_busters_flutter/features/profile/presentation/mobx/profile_store.dart';
-import 'package:bug_busters_flutter/features/profile/presentation/widgets/profile_menu_item.dart';
+import 'package:bug_busters_flutter/features/profile/widgets/profile_menu_item.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:provider/provider.dart';
+
+import '../mobx/profile_store.dart';
 
 class ProfileMenu extends StatelessObserverWidget {
   const ProfileMenu({

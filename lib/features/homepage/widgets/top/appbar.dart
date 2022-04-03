@@ -1,4 +1,7 @@
+import 'dart:html';
+
 import 'package:bug_busters_flutter/core/constants/resources.dart';
+import 'package:bug_busters_flutter/features/login/pages/login_screen.dart';
 import 'package:flutter/material.dart';
 
 class CustomAppBar extends StatelessWidget {
@@ -48,11 +51,17 @@ class CustomAppBar extends StatelessWidget {
           ),
         const SizedBox(width: 40.0),
         ///profile
-        const CircleAvatar(
-          radius: 26,
-          backgroundColor: Colors.transparent,
-          backgroundImage: NetworkImage(
-            "https://images.pexels.com/photos/2379004/pexels-photo-2379004.jpeg",
+        InkWell(
+          onTap: (){
+            Navigator.push(context, MaterialPageRoute(builder: (_)=>LoginScreen()));
+          },
+          child: const CircleAvatar(
+            radius: 26,
+
+            backgroundColor: Colors.transparent,
+            backgroundImage: NetworkImage(
+              "https://images.pexels.com/photos/2379004/pexels-photo-2379004.jpeg",
+            ),
           ),
         )
       ],

@@ -1,9 +1,10 @@
 import 'package:bug_busters_flutter/core/constants/resources.dart';
-import 'package:bug_busters_flutter/features/homepage/presentation/mobx/left_side_menu_store.dart';
-import 'package:bug_busters_flutter/features/homepage/presentation/widgets/left/left_side_menu_item.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:provider/provider.dart';
+
+import '../../mobx/left_side_menu_store.dart';
+import 'left_side_menu_item.dart';
 
 class LeftSideMenu extends StatelessObserverWidget {
   const LeftSideMenu({

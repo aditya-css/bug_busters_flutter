@@ -1,5 +1,5 @@
-import 'package:bug_busters_flutter/features/profile/presentation/pages/desktopview.dart';
-import 'package:bug_busters_flutter/features/profile/presentation/pages/mobileview.dart';
+import 'package:bug_busters_flutter/features/profile/pages/desktopview.dart';
+import 'package:bug_busters_flutter/features/profile/pages/mobileview.dart';
 import 'package:flutter/material.dart';
 
 class EditProfile extends StatefulWidget {

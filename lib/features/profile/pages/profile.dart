@@ -1,6 +1,7 @@
 import 'package:bug_busters_flutter/core/constants/resources.dart';
-import 'package:bug_busters_flutter/features/profile/presentation/pages/edit_profile.dart';
 import 'package:flutter/material.dart';
+
+import 'edit_profile.dart';
 
 class Profile extends StatefulWidget {
   const Profile({Key? key}) : super(key: key);

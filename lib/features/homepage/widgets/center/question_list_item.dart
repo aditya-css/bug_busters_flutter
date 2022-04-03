@@ -1,9 +1,10 @@
 import 'package:bug_busters_flutter/core/constants/assets.dart';
 import 'package:bug_busters_flutter/core/constants/colors.dart';
-import 'package:bug_busters_flutter/features/homepage/presentation/widgets/right/custom_divider.dart';
-import 'package:bug_busters_flutter/features/question_detail/presentation/pages/question_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+
+import '../../../question_detail/pages/question_page.dart';
+import '../right/custom_divider.dart';
 
 class QuestionListItem extends StatelessWidget {
   // final String question;
@@ -29,7 +30,7 @@ class QuestionListItem extends StatelessWidget {
       ),
       child: InkWell(
         onTap: (){
-          Navigator.push(context, MaterialPageRoute(builder: (_)=>QuestionPage()));
+          Navigator.push(context, MaterialPageRoute(builder: (_)=>const QuestionPage()));
         },
         child: Row(
           children: [
@@ -75,7 +76,7 @@ class QuestionListItem extends StatelessWidget {
                           fontSize: 14,
                         ),
                   ),
-                  CustomDivider(),
+                  const CustomDivider(),
                   Row(
                     children: [
                       const CircleAvatar(
