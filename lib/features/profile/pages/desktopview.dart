@@ -2,6 +2,7 @@ import 'package:bug_busters_flutter/core/constants/assets.dart';
 import 'package:bug_busters_flutter/core/constants/colors.dart';
 import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:flutter_svg/svg.dart';
 
 import '../widgets/textfield.dart';
@@ -162,13 +163,18 @@ class _DesktopViewState extends State<DesktopView> {
                               hintText: "Email",
                               width: 500),
                           const SizedBox(height: 10),
-                          TextFieldProfile(
-                            controller: widget.publicAddress,
-                            type: TextInputType.multiline,
-                            maxLine: 1,
-                            title: "Public Address",
-                            hintText: "Public Address",
-                            width: 500,
+                          Observer(
+                            builder: (context) {
+                              return TextFieldProfile(
+                                controller: widget.publicAddress,
+                                type: TextInputType.multiline,
+                                maxLine: 1,
+                                enabled: false,
+                                title: "Public Address",
+                                hintText: "Public Address",
+                                width: 500,
+                              );
+                            },
                           ),
                           const SizedBox(height: 20),
                           Row(

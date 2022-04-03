@@ -5,4 +5,6 @@ class AppAssets {
   static const String kTrendingIcon = "assets/icons/trending.svg";
   static const String kProfileIcon = "assets/icons/profile.svg";
   static const kAvatar = "assets/avatar.png";
+  static const String kMetaStack = "assets/MetaStack.json";
+  static const String kMetaToken = "assets/MetaToken.json";
 }

@@ -8,6 +8,7 @@ class TextFieldProfile extends StatefulWidget {
   final TextInputType type;
   final int maxLine;
   final TextEditingController controller;
+  final bool enabled;
 
   const TextFieldProfile({
     Key? key,
@@ -17,6 +18,7 @@ class TextFieldProfile extends StatefulWidget {
     this.type = TextInputType.text,
     this.maxLine = 1,
     required this.controller,
+    this.enabled = true,
   }) : super(key: key);
 
   @override
@@ -47,6 +49,7 @@ class _TextFieldProfileState extends State<TextFieldProfile> {
             controller: widget.controller,
             keyboardType: widget.type,
             maxLines: widget.maxLine,
+            enabled: widget.enabled,
             decoration: InputDecoration(
               hintText: widget.hintText,
               border: const OutlineInputBorder(),

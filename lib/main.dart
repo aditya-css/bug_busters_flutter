@@ -1,3 +1,4 @@
+import 'package:bug_busters_flutter/features/profile/mobx/profile_store.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:sizer/sizer.dart';
@@ -25,6 +26,9 @@ class MyApp extends StatelessWidget {
           providers: [
             Provider<LeftSideMenuStore>(
               create: (context) => LeftSideMenuStore(),
+            ),
+            Provider<ProfileStore>(
+              create: ((context) => ProfileStore()),
             ),
           ],
           child: HomePage(),
