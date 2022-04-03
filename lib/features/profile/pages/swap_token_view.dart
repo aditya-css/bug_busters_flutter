@@ -1,6 +1,9 @@
 import 'package:bug_busters_flutter/core/constants/resources.dart';
 import 'package:bug_busters_flutter/core/widgets/custom_elevated_container.dart';
+import 'package:bug_busters_flutter/features/profile/mobx/profile_store.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_web3/flutter_web3.dart';
+import 'package:provider/provider.dart';
 
 class SwapTokenView extends StatefulWidget {
   SwapTokenView({Key? key}) : super(key: key);
@@ -10,6 +13,9 @@ class SwapTokenView extends StatefulWidget {
 }
 
 class _SwapTokenViewState extends State<SwapTokenView> {
+  final late store;
+
+  
   String dropDownCurrency1 = "Default";
 
   String dropDownCurrency2 = "Default";
@@ -17,14 +23,20 @@ class _SwapTokenViewState extends State<SwapTokenView> {
   Map currencyList = <String, Widget>{
     'Default': const Text("Select Currency"),
     'ETH': const Text("ETH"),
-    'MTK': const Text("MTK")
+    'META': const Text("META")
   };
 
   var currency = [
     'Default',
     'ETH',
-    'MTK',
+    'META',
   ];
+
+  @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+    store = Provider.of<ProfileStore>(context);
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -32,11 +44,6 @@ class _SwapTokenViewState extends State<SwapTokenView> {
       mainAxisAlignment: MainAxisAlignment.center,
       crossAxisAlignment: CrossAxisAlignment.center,
       children: [
-        // SvgPicture.asset(
-        //   AppAssets.kBitcoin,
-        //   height: 200,
-        //   width: 500,
-        // ),
         Padding(
           padding: const EdgeInsets.all(20.0),
           child: CustomElevatedContainer(
@@ -67,7 +74,8 @@ class _SwapTokenViewState extends State<SwapTokenView> {
                         borderRadius: BorderRadius.circular(6),
                         borderSide: BorderSide.none,
                       ),
-                      contentPadding: const EdgeInsets.symmetric(horizontal: 20),
+                      contentPadding:
+                          const EdgeInsets.symmetric(horizontal: 20),
                       suffixIcon: DropdownButton(
                         value: dropDownCurrency1,
                         underline: const SizedBox.shrink(),
@@ -107,7 +115,8 @@ class _SwapTokenViewState extends State<SwapTokenView> {
                       ),
                       fillColor: AppColors.kPrimary.withOpacity(0.1),
                       filled: true,
-                      contentPadding: const EdgeInsets.symmetric(horizontal: 20),
+                      contentPadding:
+                          const EdgeInsets.symmetric(horizontal: 20),
                       suffixIcon: DropdownButton(
                         value: dropDownCurrency2,
                         style: const TextStyle(color: Colors.black),
@@ -159,6 +168,40 @@ class _SwapTokenViewState extends State<SwapTokenView> {
                   ),
                 ],
               ),
+            ),
+          ),
+        ),
+        TextButton.icon(
+          onPressed: () async {
+            // `Ethereum.isSupported` is the same as `ethereum != null`
+            if (ethereum != null) {
+              try {
+                // Prompt user to connect to the provider, i.e. confirm the connection modal
+                final accs = await ethereum!
+                    .requestAccount(); // Get all accounts in node disposal
+                accs; // [foo,bar]
+              } on EthereumUserRejected {
+                print('User rejected the modal');
+              }
+            }
+          },
+          style: TextButton.styleFrom(
+            fixedSize: const Size(200, 50),
+            backgroundColor: AppColors.kPrimary,
+            elevation: 0,
+            padding: const EdgeInsets.symmetric(horizontal: 28, vertical: 20),
+            shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(2),
+                side: const BorderSide(color: AppColors.kPrimary)),
+          ),
+          icon: const Icon(
+            Icons.wallet_membership_outlined,
+            color: AppColors.kWhite,
+          ),
+          label: const Text(
+            "Connect Wallet",
+            style: TextStyle(
+              color: AppColors.kWhite,
             ),
           ),
         ),

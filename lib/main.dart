@@ -13,7 +13,10 @@ import 'features/homepage/pages/home_page.dart';
 
 void main() {
   runApp(
-    const MaterialApp(home: MyApp()),
+    const MaterialApp(
+      debugShowCheckedModeBanner: false,
+      home: MyApp(),
+    ),
   );
 }
 
