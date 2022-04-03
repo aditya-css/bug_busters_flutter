@@ -113,6 +113,7 @@ class _QuestionPageState extends State<QuestionPage> {
         backgroundColor: AppColors.kWhite,
         toolbarHeight: 70,
         elevation: 14,
+        iconTheme: const IconThemeData(color: AppColors.kBlack),
         shadowColor: AppColors.kGrey.withOpacity(0.2),
         title: Row(
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,

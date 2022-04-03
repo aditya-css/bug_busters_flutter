@@ -35,6 +35,12 @@ class LeftSideMenu extends StatelessObserverWidget {
             onPressed: () => store.changeIndex(2),
             title: AppStrings.kMyAnsIconText,
             iconPath: AppAssets.kAnsIcon,
+          ),
+          LeftSideMenuItem(
+            isSelected: store.selectedItem == 3 ? true : false,
+            onPressed: () => store.changeIndex(3),
+            title: AppStrings.kProfileSettingText,
+            iconPath: AppAssets.kProfileIcon,
           )
         ],
       ),

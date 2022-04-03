@@ -4,6 +4,7 @@ class AppStrings {
   static const String kHomeIconText = "Home";
   static const String kMyQueIconText = "My Questions";
   static const String kMyAnsIconText = "My Answers";
+  static const String kProfileSettingText = "Profile Settings";
 
   static const String kHintText = "Share Your Thoughts";
   static const String kTitleText = "Share Your Thoughts With Us :)";
