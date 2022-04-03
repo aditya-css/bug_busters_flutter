@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
 
-import '../widgets/center/question_list_item.dart';
-
 class MyQueListPage extends StatelessWidget {
   const MyQueListPage({Key? key}) : super(key: key);
 

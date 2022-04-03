@@ -1,4 +1,3 @@
-import 'package:bug_busters_flutter/models/answer_model.dart';
 import 'package:bug_busters_flutter/models/user_model.dart';
 import 'package:json_annotation/json_annotation.dart';
 

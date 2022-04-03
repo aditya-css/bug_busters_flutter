@@ -1,7 +1,6 @@
 
 import 'package:bug_busters_flutter/core/constants/resources.dart';
 import 'package:bug_busters_flutter/features/homepage/mobx/login_check_store.dart';
-import 'package:bug_busters_flutter/features/homepage/mobx/login_check_store.dart';
 import 'package:bug_busters_flutter/features/login/pages/login_screen.dart';
 import 'package:bug_busters_flutter/features/profile/pages/edit_profile.dart';
 import 'package:flutter/material.dart';

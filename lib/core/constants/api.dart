@@ -14,10 +14,7 @@ class ApiConst {
   static const String kJsonContentType = 'application/json';
   static const String kTotalQuestion = '/question/totalQuestion';
   static const String kUserRegister = '/user/register';
-  static const String kTotalCount = '/question/totalQuestion';
-  static const String kQueAnsDetail = '/answer/{id}';
 
-  static const String kJsonContentType = 'application/json';
 
 
   static ApiClientService client = ApiClientService(Dio(

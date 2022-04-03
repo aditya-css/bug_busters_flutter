@@ -1,15 +1,12 @@
 import 'package:bug_busters_flutter/core/constants/resources.dart';
-import 'package:bug_busters_flutter/models/que_ans_detail_model.dart';
-
 import 'package:bug_busters_flutter/models/login_request_model.dart';
 import 'package:bug_busters_flutter/models/login_response_model.dart';
+import 'package:bug_busters_flutter/models/que_ans_detail_model.dart';
 import 'package:bug_busters_flutter/models/user_model.dart';
 import 'package:bug_busters_flutter/models/user_response_model.dart';
-import 'package:bug_busters_flutter/models/que_ans_detail_model.dart';
-
 import 'package:dio/dio.dart';
 import 'package:retrofit/http.dart';
-import 'package:retrofit/http.dart';
+import 'package:retrofit/retrofit.dart';
 
 import '../models/question_model.dart';
 import '../models/total_question_model.dart';

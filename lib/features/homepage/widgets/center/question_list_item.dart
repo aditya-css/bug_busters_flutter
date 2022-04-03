@@ -1,8 +1,6 @@
 import 'package:bug_busters_flutter/core/constants/assets.dart';
 import 'package:bug_busters_flutter/core/constants/colors.dart';
-import 'package:bug_busters_flutter/models/answer_model.dart';
 import 'package:bug_busters_flutter/models/question_model.dart';
-import 'package:bug_busters_flutter/models/user_model.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:timeago/timeago.dart' as timeago;

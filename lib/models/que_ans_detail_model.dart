@@ -1,5 +1,6 @@
 import 'package:bug_busters_flutter/models/question_model.dart';
 import 'package:json_annotation/json_annotation.dart';
+
 part 'que_ans_detail_model.g.dart';
 
 @JsonSerializable()

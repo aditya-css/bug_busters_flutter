@@ -1,8 +1,6 @@
-import 'package:bug_busters_flutter/api_service/api_client_service.dart';
 import 'package:bug_busters_flutter/core/constants/api.dart';
 import 'package:bug_busters_flutter/models/que_ans_detail_model.dart';
 import 'package:bug_busters_flutter/models/question_model.dart';
-import 'package:dio/dio.dart';
 
 class ApiRepo {
 

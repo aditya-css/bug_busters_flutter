@@ -1,4 +1,3 @@
-import 'package:bug_busters_flutter/api_service/repositories/api_repo.dart';
 import 'package:bug_busters_flutter/core/constants/resources.dart';
 import 'package:flutter/material.dart';
 import 'package:sizer/sizer.dart';
